@@ -21,12 +21,16 @@ $ scp username@example.com:original_file new_file
 | ~ V         | Print version information |
 | ~ s         | Print statistics about this session |
 
-####
+
+#### Key Pair Generation
+**SSH v1 or OpenSSH**
 ```
+ssh-keygen1
 ```
 
-####
+**SSH V2**
 ```
+ssh-keygen2
 ```
 
 ####
