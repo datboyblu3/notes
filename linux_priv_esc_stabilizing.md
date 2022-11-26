@@ -21,3 +21,17 @@ export TERM=xterm
 stty raw -echo; fg
 ```
 
+
+## Technique 2: rlwrap
+
+**Install rlwrap**
+```JavaScript
+sudo apt install rlwrap
+```
+
+**Usage**
+```JavaScript
+rlwrap nc -lvnp <port>
+```
+
+### Use the third step in technique 1 as the final step for Technique 2
