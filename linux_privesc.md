@@ -1,17 +1,20 @@
 ### Run the following commands to enumerate a system
 
+**Returns the hostname of the target machine**
 ```JavaScript
 hostname
 ```
-
+**Will print system information giving us additional detail about the kernel used by the system**
 ```JavaScript
 uname -a
 ```
 
+**The proc filesystem (procfs) provides information about the target system processes**
 ```JavaScript
 /proc/version
 ```
 
+**Usually contains some information about the operating system**
 ```JavaScript
 /etc/issue
 ```
@@ -30,18 +33,26 @@ ps axjf
 ps aux
 ```
 
+**List all commands your user can run using sudo**
 ```JavaScript
 sudo -l
 ```
-
+**General overview of the user’s privilege level and group memberships**
 ```JavaScript
 id 
 ```
 
+**Verify environment variables*
+```JavaScript
+env
+```
+
+**Potentially discover users on the system**
 ```JavaScript
 /etc/passwd
 ```
 
+**Cut away the fat from the command above**
 ```JavaScript
 cat /etc/passwd | grep home
 ```
@@ -61,6 +72,7 @@ netstat -a
 netstat -at 
 ```
 
+**list TCP or UDP protocols **
 ```JavaScript
 netstat -au
 ```
@@ -143,48 +155,34 @@ find / -amin -60
 find / -size 50M
 ```
 
-****
+**Folders and files that can be written to or executed from**
 ```JavaScript
-
+find / -writable -type d 2>/dev/null
+```
+```JavaScript
+find / -perm -222 -type d 2>/dev/null
+```
+```JavaScript
+find / -perm -o w -type d 2>/dev/null
 ```
 
-****
+**Find world-executable folders**
 ```JavaScript
-
+find / -perm -o x -type d 2>/dev/null
 ```
 
-****
+**Find development tools and supported languages**
 ```JavaScript
-
+find / -name perl*
+```
+```JavaScript
+find / -name python*
+```
+```JavaScript
+find / -name gcc*
 ```
 
-****
+**Find files with the SUID bit**
 ```JavaScript
-
+find / -perm -u=s -type f 2>/dev/null
 ```
-
-****
-```JavaScript
-
-```
-
-****
-```JavaScript
-
-```
-
-****
-```JavaScript
-
-```
-
-****
-```JavaScript
-
-```
-
-****
-```JavaScript
-
-```
-
