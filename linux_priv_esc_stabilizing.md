@@ -99,3 +99,6 @@ The first part is easy -- we're linking up with the listener running on our own 
 - sigint, passes any Ctrl + C commands through into the sub-process, allowing us to kill commands inside the shell
 - setsid, creates the process in a new session
 - sane, stabilises the terminal, attempting to "normalise" it.
+
+  
+## Socat Encrypted Shells
