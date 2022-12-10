@@ -187,6 +187,10 @@ find / -name gcc*
 find / -perm -u=s -type f 2>/dev/null
 ```
 
+```JavaScript
+find / -type f -perm -04000 -ls 2>/dev/null
+```
+
 **Privilege Escalation with Sudo**
 
 Run nano and press CTRL+R and CTRL+X. Then enter the following and press enter:
