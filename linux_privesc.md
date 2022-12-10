@@ -187,6 +187,7 @@ find / -name gcc*
 find / -perm -u=s -type f 2>/dev/null
 ```
 
+**Find files with the SUID or SGID bit set**
 ```JavaScript
 find / -type f -perm -04000 -ls 2>/dev/null
 ```
@@ -198,11 +199,18 @@ Run nano and press CTRL+R and CTRL+X. Then enter the following and press enter:
 reset; bash 1>&0 2>&0
 ```
 
-****
+### Capabilities**
 
+Capabilities help manage privileges at a more granular level. For example, if the SOC analyst needs to use a tool that needs to initiate socket connections, a regular user would not be able to do that. If the system administrator does not want to give this user higher privileges, they can change the capabilities of the binary. As a result, the binary would get through its task without needing a higher privilege user.
 
+- When run as an unprivileged user, getcap -r / will generate a huge amount of errors, so it is good practice to redirect the error messages to /dev/null.
+- Note that neither vim nor its copy has the SUID bit set. This privilege escalation vector is therefore not discoverable when enumerating files looking for SUID.
+- [GTFObins has a good list of binaries that can be leveraged for privilege escalation if we find any set capabilities.
+](https://gtfobins.github.io/gtfobins/vim/#capabilities)
+
+**Use the getcap tool to list enabled capabilities**
 ```JavaScript
-
+getcap -r / 2>/dev/null
 ```
 
 ****
