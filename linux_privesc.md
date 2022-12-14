@@ -230,8 +230,14 @@ Before exploiting with, ensure you can answer the following questions:
 3. Can you modify $PATH?
 4. Is there a script/application you can start that will be affected by this vulnerability?
 
+*Ensure that whatever scripts you find are calling a binary with no defined path. This will force the script to look within the PATH variable. If the directory that contains your exploit is not in PATH, add it to it like so:*
 ```JavaScript
+export PATH=/tmp:$PATH
+```
 
+Find writable files and clean the output of the command
+```JavaScript
+find / -writable 2>/dev/null | grep home | cut -d "/" -f 2 | sort -u
 ```
 
 ****
