@@ -219,7 +219,7 @@ Capabilities help manage privileges at a more granular level. For example, if th
 getcap -r / 2>/dev/null
 ```
 
-**** Priv Esc with C Code
+**Priv Esc with C Code**
 
 ```JavaScript
 #include <stdio.h>
