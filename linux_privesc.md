@@ -166,6 +166,12 @@ find / -perm -222 -type d 2>/dev/null
 find / -perm -o w -type d 2>/dev/null
 ```
 
+**Does the same as above, but also cleans up the output with cut and sort**
+```JavaScript
+find / -writable -type d 2>/dev/null | cut -d "/" -f 2 | sort -u
+```
+
+
 **Find world-executable folders**
 ```JavaScript
 find / -perm -o x -type d 2>/dev/null
