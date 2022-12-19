@@ -273,19 +273,14 @@ int main()
   return 0;
 }
 ```
-
-****
-
-
+Now compile the exploit:
 ```JavaScript
-
+gcc nfs.c -o nfs -w
 ```
-
-****
-
+Give executable permissions and set the SUID bit
 
 ```JavaScript
-
+chmod x+s nfs
 ```
 
 ****
