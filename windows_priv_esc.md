@@ -69,3 +69,16 @@ To retrieve the stored proxy credentials, you can search under the following reg
 reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s
 ```
 
+### Scheduled Tasks
+
+Scheduled tasks can be listed from the command line using the schtasks command without any options. To retrieve detailed information about any of the services, you can use a command like the following one:
+
+```JavaScript
+schtasks /query /tn vulntask /fo list /v
+```
+
+
+
+```JavaScript
+
+```
