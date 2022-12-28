@@ -34,3 +34,38 @@ Whenever a user runs a command using Powershell, it gets stored into a file that
 ```JavaScript
 %userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
 ```
+
+**Saved Windows Credentials**
+
+The command below will list saved credentials. 
+
+```JavaScript
+cmdkey /list
+```
+
+Although you wont be able to see the credentials, use the *runas* command and the */savecred* option/
+```JavaScript
+runas /savecred /usr:admin cmd.exe
+```
+
+**IIS Configuration**
+
+Internet Information Services (IIS) is the default web server on Windows installations. The configuration of websites on IIS is stored in a file called web.config and can store passwords for databases or configured authentication mechanisms. Depending on the installed version of IIS, we can find web.config in one of the following locations:
+
+- C:\inetpub\wwwroot\web.config
+- C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config
+
+```JavaScript
+type C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Config\web.config | findstr connectionString
+```
+
+**Retrieve Credentials from Software: PuTTY**
+
+PuTTY is an SSH client commonly found on Windows systems. Instead of having to specify a connection's parameters every single time, users can store sessions where the IP, user and other configurations can be stored for later use. While PuTTY won't allow users to store their SSH password, it will store proxy configurations that include cleartext authentication credentials.
+
+To retrieve the stored proxy credentials, you can search under the following registry key for ProxyPassword with the following command:
+
+```JavaScript
+reg query HKEY_CURRENT_USER\Software\SimonTatham\PuTTY\Sessions\ /f "Proxy" /s
+```
+
