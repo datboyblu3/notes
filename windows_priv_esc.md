@@ -25,3 +25,12 @@ When installing Windows on a large number of hosts, administrators may use Windo
 - C:\Windows\Panther\Unattend\Unattend.xml
 - C:\Windows\system32\sysprep.inf
 - C:\Windows\system32\sysprep\sysprep.xml
+
+**Powershell History**
+
+Whenever a user runs a command using Powershell, it gets stored into a file that keeps a memory of past commands. This is useful for repeating commands you have used before quickly. If a user runs a command that includes a password directly as part of the Powershell command line, it can later be retrieved by using the following command from a cmd.exe prompt:
+
+*To read the file from Powershell, you'd have to replace %userprofile% with $Env:userprofile*
+```JavaScript
+%userprofile%\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt
+```
