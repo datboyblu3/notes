@@ -82,3 +82,13 @@ schtasks /query /tn vulntask /fo list /v
 ```JavaScript
 
 ```
+
+## Abusing Service Misconfigurations
+
+Windows services are managed by the Service Control Manager (SCM). The SCM is a process in charge of managing the state of services as needed, checking the current status of any given service and generally providing a way to configure services.
+
+Each service on a Windows machine will have an associated executable which will be run by the SCM whenever a service is started. It is important to note that service executables implement special functions to be able to communicate with the SCM, and therefore not any executable can be started as a service successfully. Each service also specifies the user account under which the service will run.
+
+Services have a Discretionary Access Control List (DACL), which indicates who has permission to start, stop, pause, query status, query configuration, or reconfigure the service, amongst other privileges.
+
+All of the services configurations are stored on the registry under HKLM\SYSTEM\CurrentControlSet\Services\ .
