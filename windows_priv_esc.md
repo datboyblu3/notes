@@ -94,6 +94,9 @@ Services have a Discretionary Access Control List (DACL), which indicates who ha
 All of the services configurations are stored on the registry under HKLM\SYSTEM\CurrentControlSet\Services\ .
 
 
+## Insecure Service Permissions
+
+
 ## SeBackup / SeRestore
 
 The SeBackup and SeRestore privileges allow users to read and write to any file in the system, ignoring any DACL in place. The idea behind this privilege is to allow certain users to perform backups from a system without requiring full administrative privileges.
