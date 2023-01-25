@@ -47,3 +47,21 @@ TCP/443 - Session Duration 2s, 33 packets sent, 10:00:13.213
 TCP/443 - Session Duration 3s, 55 packets sent, 10:00:14.912
 TCP/443 - Session Duration 1s, 33 packets sent, 10:00:23.444
 TCP/443 - Session Duration 3s, 55 packets sent, 10:00:27.182
+
+
+## Payload Types
+
+- Stagless: contain the full C2 agent and will call back to the C2 server and begin beaconing immediately.
+
+![e79d46d97f108842b9424ae5a134d2f8](https://user-images.githubusercontent.com/95729902/214464168-0adf6b3a-1824-4f70-90ab-e47485ae8e75.png)
+
+1. The Victim downloads and executes the Dropper
+2. The beaconing to the C2 Server begins
+
+
+- Staged Payloads:  require a callback to the C2 server to download additional parts of the C2 agent.
+- Known as a "Dropper" because it is dropped onto the victim machine to download the second stage of the staged payload.
+- Makes it easier to obfuscate code to bypass Anti-Virus programs
+
+![e6127ac6a295a1d9b01444757f711084](https://user-images.githubusercontent.com/95729902/214464482-174ae84b-1755-4dd9-b9bf-57f83622f776.png)
+
