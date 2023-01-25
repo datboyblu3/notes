@@ -24,3 +24,26 @@ A listener is an application running on the C2 server that waits for a callback 
 
 A Beacon is the process of a C2 Agent calling back to the listener running on a C2 Server.
 
+## Obfuscating Agent Callbacks
+
+#### Sleep Timers
+
+One key thing that some security analysts, anti-virus, and next-generation firewalls look for when attempting to identify Command and Control traffic is beaconing and the rate at which a device beacons out to a C2 server. Let’s say a firewall observed traffic that looks like so
+
+- TCP/443 - Session Duration 3s, 55 packets sent, 10:00:05.000
+- TCP/443 - Session Duration 2s, 33 packets sent, 10:00:10.000
+- TCP/443 - Session Duration 3s, 55 packets sent, 10:00:15.000
+- TCP/443 - Session Duration 1s, 33 packets sent, 10:00:20.000
+- TCP/443 - Session Duration 3s, 55 packets sent, 10:00:25.000
+
+A pattern is starting to form. The agent beacons out every 5 seconds; this means that it has a sleep timer of 5 seconds.
+
+#### Jitter
+
+Jitter takes the sleep timer and adds some variation to it; our C2 beaconing may now exhibit a strange pattern that may show activity that is closer to an average user:
+
+TCP/443 - Session Duration 3s, 55 packets sent, 10:00:03.580
+TCP/443 - Session Duration 2s, 33 packets sent, 10:00:13.213
+TCP/443 - Session Duration 3s, 55 packets sent, 10:00:14.912
+TCP/443 - Session Duration 1s, 33 packets sent, 10:00:23.444
+TCP/443 - Session Duration 3s, 55 packets sent, 10:00:27.182
