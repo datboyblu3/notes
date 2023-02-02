@@ -53,3 +53,22 @@ in engagement is to hunt for information that leads to a domain administrator ha
 | Schema Admins | Capable of modifying domain/forest; useful for red team |
 | Server Operators | Can manage domain servers |
 | Account Operators | Can manage users that are not in privileged groups |
+
+## Active Directory Enumeration
+
+**Get All AD User Accounts**
+```PowerShell
+Get-ADUser -Filter *
+```
+
+The Distinguished Name (DN) is a collection of comma-separated key and value pairs used to identify unique records within the directory. The DN consists of Domain Component (DC), OrganizationalUnitName (OU), Common Name (CN), and others. The following "CN=User1,CN=Users,DC=thmredteam,DC=com" is an example of DN, which can be visualized as follow:
+
+![764c72d40ec3d823b05d6473702e00f5](https://user-images.githubusercontent.com/95729902/216207218-74d45940-a495-41f9-9f8a-5aa48ca9caf8.png)
+
+
+Using the SearchBase option, we specify a specific Common-Name CN in the active directory. For example, we can specify to list any user(s) that part of Users:
+
+```PowerShell
+Get-ADUser -Filter * -SearchBase "CN=Users,DC=THMREDTEAM,DC=COM"
+```
+
