@@ -62,3 +62,35 @@ files and detects threats but does not provide remediation. Finally, Disable mod
  ```PowerShell
  Test-NetConnection -ComputerName 127.0.0.1 -Port 80
  ```
+
+### Security Event Logging and Monitoring
+
+We can get a list of available event logs on the local machine using the Get-EventLog cmdlet.
+
+```PowerShell
+Get-EventLog -List
+```
+
+### Sysmon
+
+The following are some of the tricks that can be used to detect whether the sysmon is available in the victim machine or not.
+
+We can  look for a process or service that has been named "Sysmon" within the current process or services as follows:
+
+```PowerShell
+Get-Process | Where-Object { $_.ProcessName -eq "Sysmon" }
+```
+
+OR
+
+```PowerShell
+Get-CimInstance win32_service -Filter "Description = 'System Monitor service'"
+```
+
+Or checking the Windows registry
+
+```PowerShell
+reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WINEVT\Channels\Microsoft-Windows-Sysmon/Operational
+```
+
+All these commands confirm if the sysmon tool is installed. Once we detect it, we can try to find the sysmon configuration file if we have readable permission to understand what system administrators are monitoring.
