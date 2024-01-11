@@ -205,6 +205,11 @@ Run nano and press CTRL+R and CTRL+X. Then enter the following and press enter:
 reset; bash 1>&0 2>&0
 ```
 
+**Find and delete empty directories**
+```
+find . -type d -empty -exec rmdir -v {} +
+```
+
 ### Capabilities**
 
 Capabilities help manage privileges at a more granular level. For example, if the SOC analyst needs to use a tool that needs to initiate socket connections, a regular user would not be able to do that. If the system administrator does not want to give this user higher privileges, they can change the capabilities of the binary. As a result, the binary would get through its task without needing a higher privilege user.
