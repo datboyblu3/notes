@@ -306,11 +306,11 @@ You should now be root
 find / -name "*txt" -exec grep -Hi phrase_to_be_searched {} \;
 ```
 
-****
+**Find file by name approximate**
 
 
 ```JavaScript
-
+find / -iname "*foo*txt" 2>/dev/null
 ```
 
 ****
