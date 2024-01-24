@@ -299,11 +299,11 @@ You should now be root
 ./nfs
 ```
 
-****
+**Find by content**
 
 
 ```JavaScript
-
+find / -name "*txt" -exec grep -Hi phrase_to_be_searched {} \;
 ```
 
 ****
