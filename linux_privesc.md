@@ -313,18 +313,19 @@ find / -name "*txt" -exec grep -Hi phrase_to_be_searched {} \;
 find / -iname "*foo*txt" 2>/dev/null
 ```
 
-****
+**Find files by age**
 
+Finds log files that haven't been modified in a month or more.
 
 ```JavaScript
-
+find /var/log -iname "*~" -o -iname "*log*" -mtime +30
 ```
 
-****
+To find log files modified within the past week, you can use the - conditional:
 
 
 ```JavaScript
-
+find /var/log -iname "*~" -o -iname "*log*" -mtime -7
 ```
 
 ****
