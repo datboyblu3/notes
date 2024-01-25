@@ -328,11 +328,9 @@ To find log files modified within the past week, you can use the - conditional:
 find /var/log -iname "*~" -o -iname "*log*" -mtime -7
 ```
 
-****
-
-
+**Find All Config Files NOT in the /proc Directory**
 ```JavaScript
-
+find / ! -path "*/proc/*" -iname "*config*" -type f 2>/dev/null
 ```
 
 ****
