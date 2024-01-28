@@ -333,11 +333,9 @@ find /var/log -iname "*~" -o -iname "*log*" -mtime -7
 find / ! -path "*/proc/*" -iname "*config*" -type f 2>/dev/null
 ```
 
-****
-
-
+**Find System Processes**
 ```JavaScript
-
+find /proc -name cmdline -exec cat {} \; 2>/dev/null | tr " " "\n"
 ```
 
 ****
