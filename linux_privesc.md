@@ -359,3 +359,7 @@ find / -user root -perm -4000 -exec ls -ldb {} \; 2>/dev/null
 find / -user root -perm -6000 -exec ls -ldb {} \; 2>/dev/null
 ```
 
+**List the contents of a flag.txt**
+```
+find / -type f -name flag.txt -exec cat {} \; 2>/dev/null
+```
