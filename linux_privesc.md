@@ -145,6 +145,11 @@ find / -atime 10
 find / -cmin -60
 ```
 
+**find files recently modified in the last 10 minutes**
+```
+find . -type f -mmin -10
+```
+
 **find files accesses within the last hour (60 minutes)**
 ```JavaScript
 find / -amin -60
